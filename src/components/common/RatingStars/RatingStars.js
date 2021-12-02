@@ -26,20 +26,15 @@ const RatingStars = ({ id, stars, userRating, addRating }) => {
     <div>
       {allStars.map(star => (
         <label key={star} className={styles.starRate}>
-          <input
-            className={styles.radio}
-            type='radio'
-            name='rating'
-            value={stars}
-            onClick={event => {
-              event.preventDefault();
-              return addRating(star, id);
-            }}
-          />
+          <input type='radio' name='rating' value={stars} />
           <FontAwesomeIcon
             icon={star <= (userRating || hoverRating || stars) ? faStar : farStar}
             onMouseEnter={() => setHoverRating(star)}
             onMouseLeave={() => setHoverRating(0)}
+            onClick={event => {
+              event.preventDefault();
+              return addRating(star, id);
+            }}
             style={{ color: setColor(hoverRating, userRating, star, stars) }}
           />
         </label>

@@ -1,0 +1,148 @@
+@import "../../../styles/settings.scss";
+
+.root {
+  background-color: $product-box-background;
+  margin-top: 28px;
+
+  .box {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid $alto;
+
+  .photo {
+    position: relative;
+    height: 250px;
+    margin: 20px;
+    padding: 0;
+    background: {
+      color: $product-box-photo-background;
+      size: contain;
+      repeat: no-repeat;
+    }
+    overflow: hidden;
+    align-items: flex-end;
+    width: 40%;
+    max-width: 260px;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+
+    .sale {
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: $product-box-sale-icon-background;
+      border-radius: 50%;
+      color: $product-box-sale-icon-font;
+      padding: 30px 15px 5px 15px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      visibility: hidden;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 40px;
+      width: 100%;
+      padding: 15px 0;
+    }
+
+    .hotDealButtons {
+      margin-bottom: 110px;
+      justify-content: center;
+    }
+  }
+
+  .content {
+    z-index: 1;
+    width:60%;
+
+    h5 {
+      color: $primary;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 1px;
+      word-spacing: 1.8px;
+      display: flex;
+      flex-direction: row;
+      padding-top: 20px
+    }
+
+    .text {
+      font-size: 14px;
+    }
+  }
+}
+  .line {
+    border-bottom: 1px solid $nobel;
+  }
+
+  .actions {
+    padding: 40px 10px 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .outlines{
+      margin: 5px;
+    }
+  }
+
+  .favorites {
+    background-color: $primary;
+  }
+
+
+  .arrows {
+    background-color: #2a2a2a;
+    color: #ffffff;
+  }
+
+  .price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .oldPrice {
+    color: #a5a5a5;
+    font-weight: normal;
+    font-size: 16px;
+    text-decoration: line-through #292929;
+    margin: 0;
+    padding: 3px 20px 3px 3px;
+  }
+
+  .newPrice{
+    font-size: 18px;
+  }
+
+  &:hover {
+    .buttons {
+      visibility: visible;
+    }
+    .price .button {
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    .price {
+      .newPrice {
+        background-color: $primary;
+      }
+    }
+  }
+}
+
+
+

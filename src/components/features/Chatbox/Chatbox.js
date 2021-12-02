@@ -12,8 +12,8 @@ const Chatbox = () => {
     icon,
     root,
     header,
-    open,
-    close,
+    btnOpenChatbox,
+    btnCloseChatbox,
     form,
     body,
     overlay,
@@ -37,10 +37,10 @@ const Chatbox = () => {
 
   document.addEventListener('click', event => {
     event.preventDefault();
-    if (event.target.id === open) {
+    if (event.target.id === btnOpenChatbox) {
       handleOpen(event);
     } else if (
-      event.target.closest(`#${close}`) ||
+      event.target.closest(`#${btnCloseChatbox}`) ||
       !event.target.closest(`#${messageBox}`)
     ) {
       handleClose(event);
@@ -48,13 +48,20 @@ const Chatbox = () => {
   });
 
   const handleOpen = () => {
-    document.getElementById(open).classList.add('d-none');
+    document.getElementById(btnOpenChatbox).classList.add('d-none');
     document.getElementById(messageBox).classList.remove('d-none');
   };
 
   const handleClose = () => {
-    document.getElementById(messageBox).classList.add('d-none');
-    document.getElementById(open).classList.remove('d-none');
+    const btnOpen = document.getElementById(btnOpenChatbox);
+    const msgBox = document.getElementById(messageBox);
+
+    if (msgBox) {
+      msgBox.classList.add('d-none');
+    }
+    if (btnOpen) {
+      btnOpen.classList.remove('d-none');
+    }
   };
 
   return (
@@ -62,7 +69,7 @@ const Chatbox = () => {
       <div id={messageBox} className={settings.messageboxClass}>
         <div className={header}>
           <FontAwesomeIcon className={icon} icon={faSyncAlt} />
-          <FontAwesomeIcon className={icon} id={close} icon={faTimes} />
+          <FontAwesomeIcon className={icon} id={btnCloseChatbox} icon={faTimes} />
         </div>
         <div className={body}>
           <div className={overlay}></div>
@@ -93,7 +100,7 @@ const Chatbox = () => {
           <TiMessages className={dialogIcon} />
         </div>
       </div>
-      <Button id={open} className='' variant={'floating'}>
+      <Button id={btnOpenChatbox} className='' variant={'floating'}>
         {settings.buttonMessage}
       </Button>
     </div>

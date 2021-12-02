@@ -27,7 +27,9 @@ class ProductSlider extends React.Component {
     this.slider.slickPause();
     if (this.props.settings.autoplay) {
       setTimeout(() => {
-        this.slider.slickPlay();
+        if (this.slider !== null) {
+          this.slider.slickPlay();
+        }
       }, this.props.settings.pauseTime);
     }
   };

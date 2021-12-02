@@ -1,19 +1,18 @@
-
 import './styles/bootstrap.scss';
 import './styles/global.scss';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Blog from './components/views/Blog/Blog';
-import Cart from './components/layout/Cart/Cart';
+import Cart from './components/layout/Cart/CartContainer';
 import Homepage from './components/views/Homepage/Homepage';
-import login from './components/views/Login/Login';
 import MainLayout from './components/layout/MainLayout/MainLayoutContainer';
 import ProductList from './components/views/ProductList/ProductList';
 import ProductPage from './components/views/ProductPage/ProductPage';
 import React from 'react';
 import Register from './components/views/Register/Register';
 import Search from './components/views/Search/Search';
+import login from './components/views/Login/Login';
 
 const App = () => (
   <BrowserRouter>

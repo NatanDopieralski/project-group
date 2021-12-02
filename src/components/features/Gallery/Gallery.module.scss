@@ -31,42 +31,42 @@
 /* Gallery tabs */
 .menu {
   text-align: center;
-    ul {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+
+    li {
+      display: inline-block;
       margin: 0;
-      padding: 0;
-      list-style: none;
-      display: flex;
-      justify-content: space-between;
+      font-weight: bold;
+      background-color: $white;
+      border: 1px solid $alto;
+      width: 25%;
 
-      li {
-        display: inline-block;
-        margin: 0;
-        font-weight: bold;
-        background-color: $white;
-        border: 1px solid $alto;
-        width: 25%;
+      span {
+        color: $darkGray;
+        padding: 15px;
+        position: relative;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 14px;
+        display: block;
+        cursor: pointer;
 
-        span {
-          color: $darkGray;
-          padding: 15px;
-          position: relative;
-          text-decoration: none;
-          text-transform: uppercase;
-          font-size: 16px;
-          display: block;
-          cursor: pointer;
-
-          &.active,
-          &:hover {
-            background-color: $athens-gray;
-            color: $brandy-punch;
-            &::before {
-              content: "";
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              border-bottom: 4px solid $brandy-punch;
+        &.active,
+        &:hover {
+          background-color: $athens-gray;
+          color: $brandy-punch;
+          &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            border-bottom: 4px solid $brandy-punch;
           }
         }
       }
@@ -83,9 +83,9 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    object-fit:cover;
+    object-fit: cover;
     z-index: -5;
+    height: 300px;
   }
 
   .buttons {
@@ -98,17 +98,33 @@
     flex-direction: column;
     justify-content: center;
   }
+}
+.boximage {
+  width: 300px;
+  height: 300px;
+}
 
+.slider {
+  padding-bottom: 5px;
+  justify-content: space-around;
+  border: 1px solid $alto;
+  position: relative;
+  margin-top: -300px;
+  object-fit: cover;
+
+  .box{
+    height: 260px;
+  }
   /*Rating*/
   .content {
     text-align: center;
-    z-index: 1;
+    margin-left: 12.0%;
+    z-index: 5;
     position: absolute;
-    right: 5px;
-    bottom:25px;
+    top: 150px;
     background-color: $white;
     padding: 15px;
-    box-shadow: 0 6px 9px 1px rgba(0,0,0,0.35);
+    box-shadow: 0 6px 9px 1px rgba(0, 0, 0, 0.35);
 
     .cornerTopLeft {
       position: absolute;
@@ -128,8 +144,8 @@
       width: 0;
       height: 0;
       border-style: solid;
-      border-width: 0 0 20px 20px ;
-      border-color:  transparent transparent $mine-shaft-light transparent;
+      border-width: 0 0 20px 20px;
+      border-color: transparent transparent $mine-shaft-light transparent;
     }
 
     h5 {
@@ -162,97 +178,107 @@
         font-size: 20px;
       }
 
-      h3, h5 {
+      h3,
+      h5 {
         margin: 0;
         color: $alto;
       }
     }
   }
+
+  button {
+    width: 35px;
+    height: 85px;
+    margin-top: 185px;
+    margin-right: 30px;
+    margin-left: 30px;
+    background-color: black;
+
+    &:hover {
+      background-color: $brandy-punch;
+    }
+  }
+
+  .thumbnails {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .thumbnail {
+      width: 75px;
+      height: 75px;
+      object-fit: cover;
+      margin: 2px;
+      position: relative;
+      overflow: hidden;
+      opacity: 0.5;
+
+      &.active {
+        opacity: 1;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
 }
 
-.slider {
-    display: flex;
-    padding: 5px;
-    justify-content: space-around;
-    border: 1px solid $alto;
+.picture {
+  position: relative;
 
-    .preview, .next {
-      width: 45px;
-      background-color: black;
-      display: flex;
-      color: white;
-      font-size: bold;
-      text-align: center;
-      font-size: 20px;
-      padding-top: 15px;
-      text-decoration: none;
-      align-items: center;
-      justify-content: center;
-
-      &:hover {
-        background-color: $brandy-punch;
-      }
-    }
-
-    .thumbnails {
-      width: 100%;
-      display: flex;
-      align-items: center;
-            justify-content: space-between;
-
-
-      .thumbnail {
-        width: 75px;
-        height: 75px;
-        object-fit: cover;
-        margin: 2px;
-        position: relative;
-        overflow: hidden;
-        opacity : 0.5;
-
-        &.active {
-          opacity: 1;
-        }
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      }
-    }
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
-  .picture {
-    position: relative;
+  .details {
+    position: absolute;
+    top: 30px;
+    left: 30px;
 
-    img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    h3 {
+      text-transform: uppercase;
 
-    .details {
-      position: absolute;
-      top: 30px;
-      left: 30px;
-
-      h3 {
-        text-transform: uppercase;
-
-        span {
-          color: #69c831;
-          font-size: 3rem;
-          font-weight: bold;
-        }
-      }
-
-      h1 {
-        color: $brandy-punch;
+      span {
+        color: #69c831;
+        font-size: 3rem;
         font-weight: bold;
-        margin-bottom: 20px;
       }
     }
+
+    h1 {
+      color: $brandy-punch;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
   }
+}
+
+.slick-dots li {
+    position: relative;
+    display: inline-block;
+    width: 57px;
+    /* height: 20px; */
+    margin: 0 2px;
+    padding-top: 50px;
+    cursor: pointer;
+}
+
+.slick-dots {
+    /* position: absolute; */
+    bottom: -25px;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    margin: 5;
+    text-align: center;
+}

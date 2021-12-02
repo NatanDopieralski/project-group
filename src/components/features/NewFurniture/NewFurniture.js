@@ -2,15 +2,15 @@ import ProductBox from '../../common/ProductBox/ProductBoxContainer';
 import ProductCompareBar from '../ProductCompareBar/ProductCompareBarContainer';
 import PropTypes from 'prop-types';
 import React from 'react';
+import SectionHeading from '../../common/SectionHeading/SectionHeading';
 import styles from './NewFurniture.module.scss';
-
-import SwipeableViews from 'react-swipeable-views';
+import Swipeable from '../Swipeable/Swipeable';
+import variables from './NewFurniture.module.scss';
 
 class NewFurniture extends React.Component {
   state = {
     activePage: 0,
     activeCategory: 'bed',
-    activeFade: false,
   };
 
   handlePageChange(newPage) {
@@ -29,10 +29,17 @@ class NewFurniture extends React.Component {
   }
 
   handleCategoryChange(newCategory) {
+    console.log('variables', variables);
     this.setState({
-      activeCategory: newCategory,
       activeFade: true,
     });
+
+    setTimeout(() => {
+      this.setState({
+        activeCategory: newCategory,
+      });
+    }, 500);
+
     if (this.state.activeFade === false) {
       setTimeout(
         function() {
@@ -44,8 +51,16 @@ class NewFurniture extends React.Component {
   }
 
   render() {
-    const { categories, products, mode, productsPage, subpage } = this.props;
+    const {
+      categories,
+      products,
+      mode, 
+      /*productsPage*/ //nie działa po mergu
+      addRating,
+      subpage,
+    } = this.props;
     const { activeCategory, activePage, activeFade } = this.state;
+    const { categories, products, mode, subpage } = this.props;
     let columnNumber;
     let productsPerPage;
     let styleMenu;
@@ -70,28 +85,36 @@ class NewFurniture extends React.Component {
     if (subpage === 'homePage') {
       columnNumber = 'col-lg-3 col-sm-6 mb-5';
       productsPerPage = 4;
-      styleMenu = styles.panelBarDiv;
     } else if (subpage === 'pageShop') {
       columnNumber = 'col-lg-4 col-sm-6';
       productsPerPage = 12;
-      styleMenu = styles.hiddenMenu;
     }
 
     const categoryProducts = products.filter(item => item.category === activeCategory);
     const pagesCount = Math.ceil(categoryProducts.length / productsPerPage);
-
-    const dots = [];
+    const pages = [];
     for (let i = 0; i < pagesCount; i++) {
-      dots.push(
-        <li key={i}>
-          {/* eslint-disable-next-line */}
-          <a
-            onClick={() => this.handlePageChange(i)}
-            className={i === activePage ? styles.active : undefined}
-          >
-            page {i}
-          </a>
-        </li>
+      pages.push(
+        categoryProducts
+          .slice(i * productsPerPage, (i + 1) * productsPerPage)
+          .map(item => (
+            <div key={item.id} className='col-lg-3 col-sm-6'>
+              <ProductBox {...item} />
+            </div>
+          ))
+      );
+    }
+
+    const pages = [];
+    for (let i = 0; i < pagesCount; i++) {
+      pages.push(
+        categoryProducts
+          .slice(i * productsPerPage, (i + 1) * productsPerPage)
+          .map(item => (
+            <div key={item.id} className={columnNumber}>
+              <ProductBox {...item} addRating={addRating} />
+            </div>
+          ))
       );
     }
 
@@ -125,24 +148,32 @@ class NewFurniture extends React.Component {
               </div>
             </div>
           </div>
-          <SwipeableViews
-            enableMouseEvents
-            index={activePage}
-            onChangeIndex={index => {
-              this.handlePageChange(index);
-            }}
-            slideStyle={{ overflow: 'hidden' }}
+          <div
+            className={`row ${styles.row} ${
+              activeFade ? styles.fadeIn : styles.fadeOut
+            }`}
           >
-            <div className={`row ${styles.row} ${activeFade ? styles.fadeIn : styles.fadeOut}`} >
-              {categoryProducts
-                .slice(activePage * productsPerPage, (activePage + 1) * productsPerPage)
-                .map(item => (
-                  <div key={item.id} className={columnNumber}>
-                    <ProductBox {...item} />
-                  </div>
-                ))}
-            </div>
-          </SwipeableViews>
+            <Swipeable
+              activePage={activePage}
+              handlePageChange={this.handlePageChange.bind(this)}
+              pages={pages}
+            />
+          </div
+          <SectionHeading
+            title={'New furniture'}
+            pagesCount={pagesCount}
+            categories={categories}
+            handleCategoryChange={activeCategory => this.setState({ activeCategory })}
+            handlePageChange={activePage => this.setState({ activePage })}
+            activeCategory={activeCategory}
+            activePage={activePage}
+            subpage={subpage}
+          />
+          <Swipeable
+            activePage={activePage}
+            handlePageChange={activePage => this.setState({ activePage })}
+            pages={pages}
+          />
         </div>
         <ProductCompareBar />
       </div>
@@ -152,7 +183,7 @@ class NewFurniture extends React.Component {
 
 NewFurniture.propTypes = {
   children: PropTypes.node,
-  productsPage: PropTypes.string,
+  //productsPage: PropTypes.string,
   subpage: PropTypes.string,
   categories: PropTypes.arrayOf(
     PropTypes.shape({
@@ -173,6 +204,7 @@ NewFurniture.propTypes = {
   ),
   mode: PropTypes.string,
   activeFade: PropTypes.bool,
+  addRating: PropTypes.func,
 };
 
 NewFurniture.defaultProps = {

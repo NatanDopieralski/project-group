@@ -2,26 +2,73 @@
 
 .root {
   .banner {
-    background-color: rgb(221,17,17); //Dodany tylko w celach podgladowych (do usunięcia podczas dalszej pracy z plikiem)
-  }
-  
-  .filters {
-    background-color: rgb(149,103,221); //Dodany tylko w celach podgladowych (do usunięcia podczas dalszej pracy z plikiem)
-  }
-  .banner{
-    background-color: rgb(221, 17, 17); //Dodany tylko w celach podgladowych (do usunięcia podczas dalszej pracy z plikiem)
+    background-color: rgb(
+      221,
+      17,
+      17
+    ); //Dodany tylko w celach podgladowych (do usunięcia podczas dalszej pracy z plikiem)
   }
 
-  .filters{
+  .filters {
+    background-color: rgb(
+      149,
+      103,
+      221
+    ); //Dodany tylko w celach podgladowych (do usunięcia podczas dalszej pracy z plikiem)
+  }
+  .banner {
+    background-color: rgb(
+      221,
+      17,
+      17
+    ); //Dodany tylko w celach podgladowych (do usunięcia podczas dalszej pracy z plikiem)
+  }
+
+  .filters {
     background-color: white;
   }
-  .brands{
-    background-color: rgb(211, 230, 130); //Dodany tylko w celach podgladowych (do usunięcia podczas dalszej pracy z plikiem)
+  .brands {
+    background-color: rgb(
+      211,
+      230,
+      130
+    ); //Dodany tylko w celach podgladowych (do usunięcia podczas dalszej pracy z plikiem)
   }
-  .productList{
-    background-color: rgb(20, 128, 77); //Dodany tylko w celach podgladowych (do usunięcia podczas dalszej pracy z plikiem)
+  .productList {
+    .displayOptions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      font-size: 14px;
+      padding-top: 25px;
+      margin-left: 93%;
+
+      .displayType {
+        display: flex;
+        justify-content: space-around;
+        border: 1px solid $darkGray;
+        height: 30px;
+        width: 60px;
+
+        .icon {
+          position: relative;
+          height: 100%;
+          color: $darkGray;
+
+          &:hover {
+            cursor: pointer;
+            color: $primary;
+          }
+        }
+      }
+    }
   }
   .brands {
-    background-color: rgb(211,230,130); //Dodany tylko w celach podgladowych (do usunięcia podczas dalszej pracy z plikiem)
+    background-color: rgb(
+      211,
+      230,
+      130
+    ); //Dodany tylko w celach podgladowych (do usunięcia podczas dalszej pracy z plikiem)
   }
 }

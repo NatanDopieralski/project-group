@@ -1,8 +1,8 @@
+import { Link, NavLink } from 'react-router-dom';
 import { faMobileAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import styles from './CompanyClaim.module.scss';
 
 const CompanyClaim = () => (
@@ -15,12 +15,12 @@ const CompanyClaim = () => (
           </NavLink>
         </div>
         <div className={`col text-right ${styles.cart}`}>
-          <a href='/cart' className={styles.cartBox}>
+          <Link to='/cart' className={styles.cartBox}>
             <div className={styles.cartIcon}>
               <FontAwesomeIcon className={styles.icon} icon={faShoppingBasket} />
             </div>
             <div className={styles.cartCounter}>0</div>
-          </a>
+          </Link>
         </div>
         <div className={`col-12 col-md-4 text-left ${styles.phoneNumber}`}>
           <p>

@@ -1,5 +1,8 @@
 @import "../../../styles/settings.scss";
 
+:export {
+  $timeoutMilis: 500;
+}
 .root {
   .panelBar {
     margin-bottom: 30px;
@@ -89,6 +92,7 @@
             border-radius: 6px;
             background-color: $new-fur-inactive-dot;
             font-size: 0;
+            text-decoration: none;
 
             &.active,
             &:hover {
@@ -117,6 +121,33 @@
 
 .row{
   margin-top: -27px;
+}
+
+@media (max-width: 768px) {
+  .root {
+    .panelBar {
+      div {
+@media (max-width: 768px){
+  .root{
+    .panelBar{
+      div{
+        padding: 10px 0 10px 0;
+      }
+    }
+  }
+  // .row {
+  //   transition: opacity 500ms ease-in-out;
+  // }
+
+  .fadeIn {
+    opacity: 0;
+    transition: opacity 700ms; //ease-in-out;
+  }
+
+  .fadeOut {
+    opacity: 1;
+    transition: opacity 500ms ease-in-out;
+  }
 }
 
 @media (max-width: 768px) {

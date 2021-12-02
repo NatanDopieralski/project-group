@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import { faExchangeAlt, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
 
@@ -26,9 +27,10 @@ const ProductBox = ({
   compareCount,
   compareList,
   viewPromoted,
-  isHovered = () => null,
+  isHovered,
   category,
   userRating,
+  addToCart,
 }) => {
   const handleAddToCompare = (event, id) => {
     const inCompare = compareList.some(product => product.id === id);
@@ -46,11 +48,9 @@ const ProductBox = ({
   const handleFavClick = e => {
     e.preventDefault();
     if (Object.keys(localStorage).indexOf(id + '.fav') > -1) {
-      console.log('been present, is removed', id);
       removeFromFavorites({ id });
       localStorage.removeItem(id + '.fav');
     } else {
-      console.log('been absent, is added', id);
       addToFavorites({ id });
     }
   };
@@ -77,8 +77,8 @@ const ProductBox = ({
           className={`${styles.buttons} ${viewPromoted ? styles.hotDealButtons : null}`}
         >
           {!viewPromoted ? <Button variant='small'>Quick View</Button> : null}
-          <Button variant='small'>
-            <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon> ADD TO CART
+          <Button variant='small' onClick={() => addToCart({ id, image, name, price })}>
+            <FontAwesomeIcon icon={faShoppingBasket}></FontAwesomeIcon>ADD TO CART
           </Button>
         </div>
       </div>
@@ -156,6 +156,11 @@ ProductBox.propTypes = {
   category: PropTypes.string,
   userRating: PropTypes.number,
   heart: PropTypes.node,
+  addToCart: PropTypes.func,
+};
+
+ProductBox.defaultProps = {
+  isHovered: () => null,
 };
 
 export default ProductBox;

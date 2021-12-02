@@ -33,11 +33,11 @@ $base-size: 3rem;
     }
   }
 
-  #close {
+  #btnCloseChatbox {
     z-index: 102;
   }
 
-  #open {
+  #btnOpenChatbox {
     border-radius: 10px;
     position: fixed;
     bottom: 1rem;
